@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
+//using System.Configuration;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using SharedResources.Exceptions.DAL;
@@ -83,9 +83,11 @@ namespace DAL
                         command.Parameters.Add("@RunTime", SqlDbType.Int).Value = movie.RunTime;
                         command.Parameters.Add("@Image", SqlDbType.VarChar).Value = movie.Image;
 
-                        command.ExecuteNonQuery(); //Run the query.
+                        int rowsAffected = command.ExecuteNonQuery(); //Run the query.
 
-                        output = movie;
+                        if(rowsAffected == 1){
+                            output = movie;
+                        }
                     }
                 }
             }

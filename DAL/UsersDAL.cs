@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
+//using System.Configuration;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using SharedResources.Exceptions.DAL;
