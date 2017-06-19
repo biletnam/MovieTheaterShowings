@@ -98,5 +98,49 @@ namespace BLL.Tests
             IUserMapper foundUser = users_bll.Get_User_by_User_Name(new UserMapper { Name = "" });
         }
 
+        [TestMethod]
+        public void authenticate_user()
+        {
+            //Create a new user:
+            IUserMapper user = users_bll.Insert(new UserMapper { Name = "trump", RoleName = "user", password_hash = "thebestpassword" });
+            //Authenticate user:
+            bool authentic = users_bll.authenticate_user(new UserMapper { Name = "trump", password_hash = "thebestpassword" });
+            Assert.IsTrue(authentic);
+        }
+
+        [TestMethod]
+        public void authenticate_user_bad_password()
+        {
+            //Create a new user:
+            IUserMapper user = users_bll.Insert(new UserMapper { Name = "trump", RoleName = "user", password_hash = "thebestpassword" });
+            //Authenticate user:
+            bool authentic = users_bll.authenticate_user(new UserMapper { Name = "trump", password_hash = "iloveputin" });
+            Assert.IsTrue(!authentic);
+        }
+
+        [TestMethod]
+        public void authenticate_user_unknown_Name()
+        {
+            //Authenticate user:
+            bool authentic = users_bll.authenticate_user(new UserMapper { Name = "bobdole", password_hash = "bobdolebobdole" });
+            Assert.IsTrue(!authentic);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MissingDataBLLException))]
+        public void authenticate_user_missing_Name()
+        {
+            //Authenticate user:
+            bool authentic = users_bll.authenticate_user(new UserMapper { Name = "", password_hash = "bobdolebobdole" });
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MissingDataBLLException))]
+        public void authenticate_user_missing_password_hash()
+        {
+            //Authenticate user:
+            bool authentic = users_bll.authenticate_user(new UserMapper { Name = "trump", password_hash = "" });
+        }
+
     }
 }

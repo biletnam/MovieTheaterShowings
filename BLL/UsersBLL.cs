@@ -95,9 +95,11 @@ namespace BLL
                 try
                 {
                     IUserMapper found_user = usersDAL.Get_User_by_User_Name(user);
-                    if (bcrypt_hashing.ValidatePassword(user.password_hash, found_user.password_hash))
-                    {
-                        output = true;
+                    if(found_user != null){
+                        if (bcrypt_hashing.ValidatePassword(user.password_hash, found_user.password_hash))
+                        {
+                            output = true;
+                        }
                     }
                 }
                 catch (SqlDALException e)
