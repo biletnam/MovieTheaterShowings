@@ -74,5 +74,29 @@ namespace BLL.Tests
             IUserMapper user = users_bll.Insert(new UserMapper { Name = "trump", RoleName = "user", password_hash = "" });
         }
 
+        [TestMethod]
+        public void Get_User_by_User_Name()
+        {
+            //Create a new user:
+            IUserMapper user = users_bll.Insert(new UserMapper { Name = "comey", RoleName = "user", password_hash = "hillaryemails" });
+            //Get the user back out:
+            IUserMapper foundUser = users_bll.Get_User_by_User_Name(new UserMapper { Name = "comey" });
+            Assert.IsNotNull(foundUser);
+        }
+
+        [TestMethod]
+        public void Get_User_by_User_Name_unknown_Name()
+        {
+            IUserMapper foundUser = users_bll.Get_User_by_User_Name(new UserMapper { Name = "bobdole" });
+            Assert.IsNull(foundUser);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MissingDataBLLException))]
+        public void Get_User_by_User_Name_missing_Name()
+        {
+            IUserMapper foundUser = users_bll.Get_User_by_User_Name(new UserMapper { Name = "" });
+        }
+
     }
 }
