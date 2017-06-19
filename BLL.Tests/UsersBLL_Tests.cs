@@ -6,8 +6,7 @@ using CompositionRoot;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using SharedResources.Exceptions.BLL;
-using SharedResources.Exceptions.DAL;
-using DAL;
+using DAL; //Need this to get to the DatabaseReset class so we can reset database before/after each test.
 
 namespace BLL.Tests
 {
