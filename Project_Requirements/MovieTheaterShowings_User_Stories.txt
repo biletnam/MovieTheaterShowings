@@ -1,0 +1,10 @@
+MovieTheaterShowings - User Stories:
+
+#As an Admin I shall be able to login to the web application.
+#As an Admin I shall be able to create new Movie Showings.
+#As an Admin I shall be able to edit Movie Showings.
+#As an Admin I shall be able to remove Movie Showings.
+#As an Admin I shall be able to perform all the same operations as an anonymous User.
+#As a User I shall be able to view Movie Showings.
+#As a User I shall be able to search Movie Showings.
+#As a User I shall be able to view Details about Movie Showings.

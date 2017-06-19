@@ -37,6 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database_schema", "database
 		database_related\MovieTheaterShowings_database_schema.sql = database_related\MovieTheaterShowings_database_schema.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{5AACA4A3-905E-467B-96EF-DB6567E1FBD4}"
+	ProjectSection(SolutionItems) = preProject
+		Project_Requirements\MovieTheaterShowings_User_Stories.txt = Project_Requirements\MovieTheaterShowings_User_Stories.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,5 +97,6 @@ Global
 		{744291F1-2A54-45CA-A99D-FCCEEAC761D0} = {1BB8A997-453E-4B73-A788-3ABCC59527E5}
 		{B18FB0AC-4B6C-4A87-8C39-A4FE3463B144} = {0927D174-7CB8-4386-A079-21D76481DC54}
 		{3AD10A9F-D5EF-423A-8A76-D735B0DBE68A} = {4F789CC1-D71B-4DA6-9DED-BEA7D441F952}
+		{5AACA4A3-905E-467B-96EF-DB6567E1FBD4} = {4F789CC1-D71B-4DA6-9DED-BEA7D441F952}
 	EndGlobalSection
 EndGlobal
