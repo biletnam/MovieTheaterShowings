@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database_schema", "database
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{5AACA4A3-905E-467B-96EF-DB6567E1FBD4}"
 	ProjectSection(SolutionItems) = preProject
+		Project_Requirements\database_schema_diagram.png = Project_Requirements\database_schema_diagram.png
 		Project_Requirements\MovieTheaterShowings_User_Stories.txt = Project_Requirements\MovieTheaterShowings_User_Stories.txt
 	EndProjectSection
 EndProject
