@@ -174,7 +174,7 @@ namespace DAL.Tests
             IMovieMapper movie1 = movies_dal.InsertMovie(new MovieMapper { Title = "Kill Bill 2", RunTime = 130, Image = "/path/to/image/kb2.png" });
             IMovieMapper movie2 = movies_dal.InsertMovie(new MovieMapper { Title = "Another movie with kill in the title", RunTime = 130, Image = "/path/to/image/kadf.png" });
 
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(3000); //Need this because the Search_Movie_by_Name method takes time.
 
             List<IMovieMapper> searchResults = movies_dal.Search_Movie_by_Name("kill");
             Assert.IsTrue(searchResults.Count == 2);            
