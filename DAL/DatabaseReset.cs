@@ -20,7 +20,7 @@ namespace DAL
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("truncate_all", connection))
+                    using (SqlCommand command = new SqlCommand("reset_db", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.ExecuteNonQuery(); //Run the query.

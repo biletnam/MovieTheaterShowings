@@ -47,6 +47,7 @@ namespace DAL
                         IdentityOutput.Value = null;
                         IdentityOutput.Direction = ParameterDirection.Output;
 
+                        command.Prepare();
                         command.ExecuteNonQuery(); //Run the query.
 
                         //Return the user that was created:
@@ -83,6 +84,7 @@ namespace DAL
                         command.Parameters.Add("@RunTime", SqlDbType.Int).Value = movie.RunTime;
                         command.Parameters.Add("@Image", SqlDbType.VarChar).Value = movie.Image;
 
+                        command.Prepare();
                         int rowsAffected = command.ExecuteNonQuery(); //Run the query.
 
                         if(rowsAffected == 1){
@@ -115,6 +117,7 @@ namespace DAL
 
                         //command.ExecuteNonQuery(); //Run the query.
 
+                        command.Prepare();
                         SqlDataReader movies = command.ExecuteReader();
 
                         while (movies.Read())
@@ -151,6 +154,7 @@ namespace DAL
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
+                        command.Prepare();
                         SqlDataReader movies = command.ExecuteReader();
 
                         while (movies.Read())
@@ -194,6 +198,7 @@ namespace DAL
                         RowsAffected.Value = null;
                         RowsAffected.Direction = ParameterDirection.Output;
 
+                        command.Prepare();
                         command.ExecuteNonQuery(); //Run the query.
 
                         //Return a boolean to let us know if the delete was successful:
@@ -231,6 +236,7 @@ namespace DAL
                         IdentityOutput.Value = null;
                         IdentityOutput.Direction = ParameterDirection.Output;
 
+                        command.Prepare();
                         command.ExecuteNonQuery(); //Run the query.
 
                         //Return the user that was created:
@@ -262,6 +268,7 @@ namespace DAL
                         //Add input parameters:
                         command.Parameters.Add("@MovieID", SqlDbType.Int).Value = movie.Id;
 
+                        command.Prepare();
                         SqlDataReader showtimes = command.ExecuteReader();
 
                         while(showtimes.Read())
@@ -300,6 +307,7 @@ namespace DAL
                         //Add input parameters:
                         command.Parameters.Add("@Title", SqlDbType.VarChar).Value = search_criteria;
 
+                        command.Prepare();
                         SqlDataReader movies = command.ExecuteReader();
 
                         while (movies.Read())

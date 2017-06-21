@@ -52,6 +52,7 @@ namespace DAL
                         RoleIDOutput.Value = null;
                         RoleIDOutput.Direction = ParameterDirection.Output;
 
+                        command.Prepare();
                         command.ExecuteNonQuery(); //Run the query.
 
                         if (!(IdentityOutput.Value is DBNull))
@@ -112,8 +113,9 @@ namespace DAL
                         SqlParameter RoleName = command.Parameters.Add("@RoleName", SqlDbType.VarChar);
                         RoleName.Value = null;
                         RoleName.Size = 50;
-                        RoleName.Direction = ParameterDirection.Output;                        
+                        RoleName.Direction = ParameterDirection.Output;
 
+                        command.Prepare();
                         command.ExecuteNonQuery(); //Run the query.
 
                         if (!(UserId.Value is DBNull))

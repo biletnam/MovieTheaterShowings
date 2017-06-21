@@ -4,17 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using MVC.Models;
-
 namespace MVC.Controllers
 {
-    public class LoginController : Controller
+    public class AdminController : Controller
     {
-        // GET: Login
+        // GET: Admin
         public ActionResult Index()
         {
-            LoginViewModel viewModel = new LoginViewModel();
-            return View(viewModel);
+            return View();
         }
     }
 }
