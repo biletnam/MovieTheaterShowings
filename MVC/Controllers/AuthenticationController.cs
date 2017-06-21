@@ -22,7 +22,6 @@ namespace MVC.Controllers
         {
             CRoot CompositionRoot = new CRoot("test");
             users_bll = CompositionRoot.UsersBLL;
-            //IMoviesBLL movies_bll = CompositionRoot.MoviesBLL;
         }
 
         // GET: Authentication
@@ -42,6 +41,9 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel viewModel)
         {
+            //LOOK THIS UP TOMORROW:  https://stackoverflow.com/questions/25205312/mvc-controller-with-user-access-only-by-session
+            //It is a way to implement a custom authorize attribute to keep users out of pages they don't belong in.
+
             //Declare redirect path variables:
             string redirect_action;
             string redirect_controller;
@@ -76,6 +78,16 @@ namespace MVC.Controllers
             }
             //Redirect:
             return RedirectToAction(redirect_action, redirect_controller);
+        }
+
+        // GET: Authentication/Logout
+        public ActionResult Logout()
+        {
+            //Clear the session:
+            Session.Clear();
+            Session["Authenticated"] = false;
+            //Redirect to home:
+            return RedirectToAction("Index", "Home");
         }
 
     }

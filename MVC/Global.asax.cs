@@ -14,5 +14,11 @@ namespace MVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Session_Start(object sender, EventArgs e) 
+        {
+            Session["Authenticated"] = false;
+        }
+
     }
 }

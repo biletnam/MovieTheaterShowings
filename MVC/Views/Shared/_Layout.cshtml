@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.SessionState;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,24 +22,31 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
-                    <li><a href="">Test List Item</a></li>
-                    <li><a href="">Test List Item</a></li>
-                    <li><a href="">Test List Item</a></li>
-                </ul>
+                        <!-- If the user isn't logged in -->
+                        @if(!(bool)Session["Authenticated"]){
+                            <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Logout", "Logout", "Authentication")</li>
+                        }
+                        <li><a href="">Test List Item</a></li>
+                        <li><a href="">Test List Item</a></li>
+                        <li><a href="">Test List Item</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
-</html>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    </body>
+    </html>
