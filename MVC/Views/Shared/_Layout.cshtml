@@ -25,9 +25,11 @@
                         <!-- If the user isn't logged in -->
                         @if(!(bool)Session["Authenticated"]){
                             <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
+                            <li>@Html.ActionLink("Signup", "Signup", "Authentication")</li>
                         }
                         else
                         {
+                            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                             <li>@Html.ActionLink("Logout", "Logout", "Authentication")</li>
                         }
                         <li><a href="">Test List Item</a></li>

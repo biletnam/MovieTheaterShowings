@@ -15,12 +15,5 @@ namespace MVC.Controllers
         {
             return View();
         }
-
-        // GET: Home/protected_page
-        [AuthenticatedUser("admin")]
-        public ActionResult protected_page()
-        {
-            return View();
-        }
     }
 }

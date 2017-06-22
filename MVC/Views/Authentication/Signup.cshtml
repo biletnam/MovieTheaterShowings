@@ -1,0 +1,25 @@
+﻿@model MVC.Models.SignupViewModel
+@{
+    ViewBag.Title = "Signup";
+}
+
+<h2>Signup</h2>
+
+@{
+    using (Html.BeginForm("Signup", "Authentication", FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.Name);
+        @Html.TextBoxFor(m => m.Name);
+    
+        @Html.LabelFor(m => m.Password);
+        @Html.PasswordFor(m => m.Password);
+
+        @Html.LabelFor(m => m.ConfirmPassword);
+        @Html.PasswordFor(m => m.ConfirmPassword);
+    
+        <input type="submit" value="Signup" />
+
+        @Html.DisplayTextFor(m => m.errorMessage);
+    }
+
+}

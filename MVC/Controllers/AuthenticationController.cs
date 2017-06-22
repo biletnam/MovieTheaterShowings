@@ -6,9 +6,11 @@ using System.Web.Mvc;
 
 using MVC.Models;
 using System.Web.SessionState;
+using SharedResources.Exceptions.BLL;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using CompositionRoot;
+using MVC.custom_classes;
 
 namespace MVC.Controllers
 {
@@ -32,18 +34,22 @@ namespace MVC.Controllers
         }
 
         // GET: Authentication/Login
+        [AnonymousUser]
         public ActionResult Login()
         {
             LoginViewModel viewModel = new LoginViewModel();
+
+            if (TempData["ErrorMessage"] != null)
+            {
+                viewModel.errorMessage = TempData["ErrorMessage"].ToString();
+            }
+
             return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Login(LoginViewModel viewModel)
         {
-            //LOOK THIS UP TOMORROW:  https://stackoverflow.com/questions/25205312/mvc-controller-with-user-access-only-by-session
-            //It is a way to implement a custom authorize attribute to keep users out of pages they don't belong in.
-
             //Declare redirect path variables:
             string redirect_action;
             string redirect_controller;
@@ -59,28 +65,37 @@ namespace MVC.Controllers
                 //Get the user's information:
                 user = users_bll.Get_User_by_User_Name(user);
 
-                //Populate Session data with user data from the database:
-                Session["Authenticated"] = true;
-                Session["Id"] = user.Id;
-                Session["Name"] = user.Name;
-                Session["RoleName"] = user.RoleName;
-                Session["RoleId"] = user.RoleId;
+                setSessionData(user);
 
                 //Authentication succeeded.  Redirect to protected page:
                 redirect_action = "Index";
-                redirect_controller = "Admin";
+                redirect_controller = "Dashboard";
             }
             else
             {
                 //Authentication failed.  Redirect to login page:
                 redirect_action = "Login";
-                redirect_controller = "Authentication";      
+                redirect_controller = "Authentication";
+                TempData["ErrorMessage"] = "The username or password you entered was incorrect.  Please try again.";
             }
             //Redirect:
             return RedirectToAction(redirect_action, redirect_controller);
         }
 
+        //Method to handle populating session data:
+        public void setSessionData(IUserMapper user)
+        {
+            //Populate Session data with user data from the database:
+            Session["Authenticated"] = true;
+            Session["Id"] = user.Id;
+            Session["Name"] = user.Name;
+            Session["RoleName"] = user.RoleName;
+            Session["RoleId"] = user.RoleId;
+            Session["UserMapper"] = user;
+        }
+
         // GET: Authentication/Logout
+        [AuthenticatedUser("admin", "user")]
         public ActionResult Logout()
         {
             //Clear the session:
@@ -89,6 +104,61 @@ namespace MVC.Controllers
             //Redirect to home:
             return RedirectToAction("Index", "Home");
         }
+
+        // GET: Authentication/Signup
+        [AnonymousUser]
+        public ActionResult Signup()
+        {
+            SignupViewModel viewModel = new SignupViewModel();
+
+            if (TempData["ErrorMessage"] != null)
+            {
+                viewModel.errorMessage = TempData["ErrorMessage"].ToString();
+            }
+            
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Signup(SignupViewModel viewModel)
+        {
+            //Declare redirect path variables:
+            string redirect_action;
+            string redirect_controller;
+
+            //Verify the user's password and confirmPassword are the same, else GET OUT!
+            if(viewModel.Password == viewModel.ConfirmPassword){
+                //Create a new user:
+                try
+                {
+                    IUserMapper user = users_bll.Insert(new UserMapper { Name = viewModel.Name, RoleName = "user", password_hash = viewModel.Password });
+
+                    //Set the session to log the user in:
+                    setSessionData(user);
+
+                    //redirect path variables:
+                    redirect_action = "Index";
+                    redirect_controller = "Dashboard";
+                }
+                catch(SqlBLLException){
+                    //redirect path variables:
+                    redirect_action = "Signup";
+                    redirect_controller = "Authentication";
+                    TempData["ErrorMessage"] = "The username you entered already exists.";
+                }
+            }
+            else
+            {
+                //redirect path variables:
+                redirect_action = "Signup";
+                redirect_controller = "Authentication";
+                TempData["ErrorMessage"] = "The password you entered must match in both fields.";
+            }
+
+            //Redirect to the dashboard (protected page):
+            return RedirectToAction(redirect_action, redirect_controller);
+        }
+
 
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC.Models
 {
-    public class LoginViewModel
+    public class SignupViewModel
     {
         [Required]
         [DisplayName("Name")]
@@ -19,6 +19,11 @@ namespace MVC.Models
         [DisplayName("Password")]
         [StringLength(15)]
         public string Password { get; set; }
+
+        [Required]
+        [DisplayName("Confirm Password")]
+        [StringLength(15)]
+        public string ConfirmPassword { get; set; }
 
         //An error message:
         public string errorMessage { get; set; }

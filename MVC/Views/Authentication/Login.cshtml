@@ -9,12 +9,12 @@
     using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
     {
         @Html.LabelFor(m => m.Name);
-    @Html.TextBoxFor(m => m.Name);
-    @Html.LabelFor(m => m.Password);
-    @Html.PasswordFor(m => m.Password);
-    <input type="submit" value="Login" />
+        @Html.TextBoxFor(m => m.Name);
+        @Html.LabelFor(m => m.Password);
+        @Html.PasswordFor(m => m.Password);
+        <input type="submit" value="Login" />
 
-        //@Html.DisplayFor(m => m.Name);
+        @Html.DisplayTextFor(m => m.errorMessage);
     }
 
 }
