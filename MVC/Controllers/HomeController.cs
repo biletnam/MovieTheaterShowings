@@ -4,12 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using MVC.custom_classes;
+
 namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Home/protected_page
+        [AuthenticatedUser("admin")]
+        public ActionResult protected_page()
         {
             return View();
         }
