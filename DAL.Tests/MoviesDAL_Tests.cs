@@ -167,17 +167,33 @@ namespace DAL.Tests
             Assert.IsTrue(showtimes.Count == 1);
         }
 
+        //[TestMethod]
+        //public void Search_Movie_by_Name()
+        //{
+        //    //Create some movies:
+        //    IMovieMapper movie1 = movies_dal.InsertMovie(new MovieMapper { Title = "Kill Bill 2", RunTime = 130, Image = "/path/to/image/kb2.png" });
+        //    IMovieMapper movie2 = movies_dal.InsertMovie(new MovieMapper { Title = "Another movie with kill in the title", RunTime = 130, Image = "/path/to/image/kadf.png" });
+
+        //    System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+
+        //    List<IMovieMapper> searchResults = movies_dal.Search_Movie_by_Name("kill");
+        //    Assert.IsTrue(searchResults.Count == 2);            
+        //}
+
         [TestMethod]
-        public void Search_Movie_by_Name()
+        public void Search_Movie_by_Name_Like()
         {
             //Create some movies:
             IMovieMapper movie1 = movies_dal.InsertMovie(new MovieMapper { Title = "Kill Bill 2", RunTime = 130, Image = "/path/to/image/kb2.png" });
-            IMovieMapper movie2 = movies_dal.InsertMovie(new MovieMapper { Title = "Another movie with kill in the title", RunTime = 130, Image = "/path/to/image/kadf.png" });
+            IMovieMapper movie2 = movies_dal.InsertMovie(new MovieMapper { Title = "To Kill a Mockingbird", RunTime = 130, Image = "/path/to/image/kadf.png" });
+            IMovieMapper movie3 = movies_dal.InsertMovie(new MovieMapper { Title = "Back to the Future", RunTime = 130, Image = "/path/to/image/bttf.png" });
+            IMovieMapper movie4 = movies_dal.InsertMovie(new MovieMapper { Title = "Natural Born Killers", RunTime = 130, Image = "/path/to/image/bttf.png" });
+            IMovieMapper movie5 = movies_dal.InsertMovie(new MovieMapper { Title = "Into The Wild", RunTime = 130, Image = "/path/to/image/itw.png" });
 
-            System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+            //System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
 
-            List<IMovieMapper> searchResults = movies_dal.Search_Movie_by_Name("kill");
-            Assert.IsTrue(searchResults.Count == 2);            
+            List<IMovieMapper> searchResults = movies_dal.Search_Movie_by_Name_Like("to the");
+            Assert.IsTrue(searchResults.Count == 2);
         }
 
     }

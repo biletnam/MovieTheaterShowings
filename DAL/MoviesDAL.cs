@@ -293,7 +293,44 @@ namespace DAL
             return output;
         }
 
-        public List<IMovieMapper> Search_Movie_by_Name(string search_criteria) 
+        //public List<IMovieMapper> Search_Movie_by_Name(string search_criteria) 
+        //{
+        //    List<IMovieMapper> output = new List<IMovieMapper>();
+        //    try
+        //    {
+        //        using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //        {
+        //            connection.Open();
+        //            using (SqlCommand command = new SqlCommand("search_movies_by_title", connection))
+        //            {
+        //                command.CommandType = CommandType.StoredProcedure;
+        //                //Add input parameters:
+        //                command.Parameters.Add("@Title", SqlDbType.VarChar).Value = search_criteria;
+
+        //                command.Prepare();
+        //                SqlDataReader movies = command.ExecuteReader();
+
+        //                while (movies.Read())
+        //                {
+        //                    MovieMapper movie = new MovieMapper();
+        //                    movie.Id = (int)movies["Id"];
+        //                    movie.Title = (String)movies["Title"];
+        //                    movie.RunTime = (int)movies["RunTime"];
+        //                    movie.Image = (String)movies["Image"];
+        //                    movie.ShowTimes = Get_ShowTimes_by_MovieID(movie);
+        //                    output.Add(movie);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        throw new SqlDALException("There was a problem with SQL.  Please provide valid data.  The Title field must be provided, and must exist in the database.", e);
+        //    }
+        //    return output;
+        //}
+
+        public List<IMovieMapper> Search_Movie_by_Name_Like(string search_criteria)
         {
             List<IMovieMapper> output = new List<IMovieMapper>();
             try
@@ -301,11 +338,11 @@ namespace DAL
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("search_movies_by_title", connection))
+                    using (SqlCommand command = new SqlCommand("search_movies_by_title_like", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         //Add input parameters:
-                        command.Parameters.Add("@Title", SqlDbType.VarChar).Value = search_criteria;
+                        command.Parameters.Add("@Title", SqlDbType.VarChar).Value = "%"+search_criteria+"%";
 
                         command.Prepare();
                         SqlDataReader movies = command.ExecuteReader();

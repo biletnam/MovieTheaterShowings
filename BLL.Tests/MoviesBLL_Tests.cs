@@ -250,8 +250,70 @@ namespace BLL.Tests
             List<IShowTimesMapper> found_showtimes = movies_bll.Get_ShowTimes_by_MovieID(new MovieMapper { Id = 0 });
         }
 
+        //[TestMethod]
+        //public void Search_Movie_by_Name()
+        //{
+        //    //Insert some movies:
+        //    IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
+        //    IMovieMapper movie2 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future II", RunTime = 130, Image = "/path/to/image/bttf2.png" });
+        //    IMovieMapper movie3 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future III", RunTime = 130, Image = "/path/to/image/bttf3.png" });
+        //    IMovieMapper movie4 = movies_bll.InsertMovie(new MovieMapper { Title = "Future World", RunTime = 130, Image = "/path/to/image/fw.png" });
+        //    //Insert some movies without the word "future":
+        //    IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
+        //    IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
+
+        //    System.Threading.Thread.Sleep(7000); //Need this because the Search_Movie_by_Name method takes time.
+
+        //    //Get the showtimes back out of the database:
+        //    List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("future");
+        //    //Assert
+        //    Assert.IsTrue(found_movies.Count == 4);
+        //}
+
+        //[TestMethod]
+        //public void Search_Movie_by_Name_nonexisting_Name()
+        //{
+        //    //Insert some movies:
+        //    IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
+        //    IMovieMapper movie2 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future II", RunTime = 130, Image = "/path/to/image/bttf2.png" });
+        //    IMovieMapper movie3 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future III", RunTime = 130, Image = "/path/to/image/bttf3.png" });
+        //    IMovieMapper movie4 = movies_bll.InsertMovie(new MovieMapper { Title = "Future World", RunTime = 130, Image = "/path/to/image/fw.png" });
+        //    //Insert some movies without the word "future":
+        //    IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
+        //    IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
+
+        //    System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+
+        //    //Get the showtimes back out of the database:
+        //    List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("blahyadablah");
+        //    //Assert
+        //    Assert.IsTrue(found_movies.Count == 0);
+        //}
+
+        //[TestMethod]
+        //[ExpectedException(typeof(MissingDataBLLException))]
+        //public void Search_Movie_by_Name_missing_Name()
+        //{
+        //    //Insert some movies:
+        //    IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
+        //    IMovieMapper movie2 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future II", RunTime = 130, Image = "/path/to/image/bttf2.png" });
+        //    IMovieMapper movie3 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future III", RunTime = 130, Image = "/path/to/image/bttf3.png" });
+        //    IMovieMapper movie4 = movies_bll.InsertMovie(new MovieMapper { Title = "Future World", RunTime = 130, Image = "/path/to/image/fw.png" });
+        //    //Insert some movies without the word "future":
+        //    IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
+        //    IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
+
+        //    System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+
+        //    //Get the showtimes back out of the database:
+        //    List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("");
+        //    //Assert
+        //    Assert.IsTrue(found_movies.Count == 0);
+        //}
+
+        //Test the Search_Movie_by_Name_Like method:
         [TestMethod]
-        public void Search_Movie_by_Name()
+        public void Search_Movie_by_Name_Like()
         {
             //Insert some movies:
             IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
@@ -265,13 +327,13 @@ namespace BLL.Tests
             System.Threading.Thread.Sleep(7000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
-            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("future");
+            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("future");
             //Assert
             Assert.IsTrue(found_movies.Count == 4);
         }
 
         [TestMethod]
-        public void Search_Movie_by_Name_nonexisting_Name()
+        public void Search_Movie_by_Name_Like_nonexisting_Name()
         {
             //Insert some movies:
             IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
@@ -285,14 +347,14 @@ namespace BLL.Tests
             System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
-            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("blahyadablah");
+            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("blahyadablah");
             //Assert
             Assert.IsTrue(found_movies.Count == 0);
         }
 
         [TestMethod]
         [ExpectedException(typeof(MissingDataBLLException))]
-        public void Search_Movie_by_Name_missing_Name()
+        public void Search_Movie_by_Name_Like_missing_Name()
         {
             //Insert some movies:
             IMovieMapper movie1 = movies_bll.InsertMovie(new MovieMapper { Title = "Back To the Future I", RunTime = 130, Image = "/path/to/image/bttf1.png" });
@@ -306,7 +368,7 @@ namespace BLL.Tests
             System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
-            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name("");
+            List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("");
             //Assert
             Assert.IsTrue(found_movies.Count == 0);
         }

@@ -11,7 +11,8 @@ namespace SharedResources.Interfaces
         IMovieMapper InsertMovie(IMovieMapper movie);
         List<IMovieMapper> Get_All_Movies();
         IMovieMapper Get_Movie_by_ID(IMovieMapper movie);
-        List<IMovieMapper> Search_Movie_by_Name(string search_criteria);
+        //List<IMovieMapper> Search_Movie_by_Name(string search_criteria);
+        List<IMovieMapper> Search_Movie_by_Name_Like(string search_criteria);
         IMovieMapper Update(IMovieMapper movie);
         bool DeleteMovie(IMovieMapper movie);
         IShowTimesMapper InsertShowTime(IMovieMapper movie, IShowTimesMapper showtime);

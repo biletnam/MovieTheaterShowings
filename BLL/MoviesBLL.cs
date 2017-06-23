@@ -196,7 +196,33 @@ namespace BLL
             return output;
         }
 
-        public List<IMovieMapper> Search_Movie_by_Name(string search_criteria) 
+        //public List<IMovieMapper> Search_Movie_by_Name(string search_criteria) 
+        //{
+        //    List<IMovieMapper> output = new List<IMovieMapper>();
+        //    //Check for null or empty values:
+        //    var testVars = new Object[]{
+        //        search_criteria
+        //    };
+        //    if (!DataValidator.is_null_empty_or_zero(testVars))
+        //    {
+        //        try
+        //        {
+        //            //Insert the movie:
+        //            output = moviesDAL.Search_Movie_by_Name(search_criteria);
+        //        }
+        //        catch (SqlDALException e)
+        //        {
+        //            throw new SqlBLLException("One or more SQL constraints may have caused this issue.  Please provide the search_criteria (Name of user).", e);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        throw new MissingDataBLLException("Cannot complete this operation because required data is missing.  Please provide the search_criteria (Name of user).");
+        //    }
+        //    return output;
+        //}
+
+        public List<IMovieMapper> Search_Movie_by_Name_Like(string search_criteria)
         {
             List<IMovieMapper> output = new List<IMovieMapper>();
             //Check for null or empty values:
@@ -208,7 +234,7 @@ namespace BLL
                 try
                 {
                     //Insert the movie:
-                    output = moviesDAL.Search_Movie_by_Name(search_criteria);
+                    output = moviesDAL.Search_Movie_by_Name_Like(search_criteria);
                 }
                 catch (SqlDALException e)
                 {
