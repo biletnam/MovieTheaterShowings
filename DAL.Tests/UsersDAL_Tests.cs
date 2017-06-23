@@ -13,25 +13,29 @@ namespace DAL.Tests
     public class UsersDAL_Tests
     {
         IUsersDAL users_dal { get; set; }
+        DatabaseReset dbReset { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
             //Reset the database after all the tests:
-            DatabaseReset.resetDatabase();
+            dbReset.resetDatabase();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
             //Reset the database after all the tests:
-            DatabaseReset.resetDatabase();
+            dbReset.resetDatabase();
         }
 
         //Constructor:
         public UsersDAL_Tests()
         {
-            CRoot CompositionRoot = new CRoot("test");
+            string environment = "test";
+            CRoot CompositionRoot = new CRoot(environment);
+            dbReset = new DatabaseReset(environment);
+
             users_dal = CompositionRoot.UsersDAL;
         }
 

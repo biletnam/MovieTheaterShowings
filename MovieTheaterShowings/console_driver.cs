@@ -14,7 +14,7 @@ namespace MovieTheaterShowings
     {
         static void Main(string[] args)
         {
-            CRoot CompositionRoot = new CRoot("test");
+            CRoot CompositionRoot = new CRoot("prod");
 
             //IUsersDAL users_dal = CompositionRoot.UsersDAL;
             //IMoviesDAL movies_dal = CompositionRoot.MoviesDAL;

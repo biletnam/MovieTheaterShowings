@@ -30,7 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database_schema", "database_schema", "{3AD10A9F-D5EF-423A-8A76-D735B0DBE68A}"
 	ProjectSection(SolutionItems) = preProject
-		database_related\MovieTheaterShowings_database_schema.sql = database_related\MovieTheaterShowings_database_schema.sql
+		database_related\MovieTheaterShowings_DatabaseSchema.sql = database_related\MovieTheaterShowings_DatabaseSchema.sql
+		database_related\MovieTheaterShowings_Test_DatabaseSchema.sql = database_related\MovieTheaterShowings_Test_DatabaseSchema.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{5AACA4A3-905E-467B-96EF-DB6567E1FBD4}"
@@ -42,6 +43,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{666813C1-98CB-42E4-A874-168F828F24B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.Tests", "MVC.Tests\MVC.Tests.csproj", "{E7DE03AE-15F9-4239-B875-FC9BD8AF39D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db_files", "db_files", "{4C46AE79-A550-4F75-B2B1-5F61A6642ACE}"
+	ProjectSection(SolutionItems) = preProject
+		database_related\file_databases\MovieTheaterShowings.mdf = database_related\file_databases\MovieTheaterShowings.mdf
+		database_related\file_databases\MovieTheaterShowings_log.ldf = database_related\file_databases\MovieTheaterShowings_log.ldf
+		database_related\file_databases\MovieTheaterShowings_Test.mdf = database_related\file_databases\MovieTheaterShowings_Test.mdf
+		database_related\file_databases\MovieTheaterShowings_Test_log.ldf = database_related\file_databases\MovieTheaterShowings_Test_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,5 +108,6 @@ Global
 		{5AACA4A3-905E-467B-96EF-DB6567E1FBD4} = {4F789CC1-D71B-4DA6-9DED-BEA7D441F952}
 		{666813C1-98CB-42E4-A874-168F828F24B0} = {C9B77A53-5F46-4B0E-9669-6D1A8F296747}
 		{E7DE03AE-15F9-4239-B875-FC9BD8AF39D6} = {C9B77A53-5F46-4B0E-9669-6D1A8F296747}
+		{4C46AE79-A550-4F75-B2B1-5F61A6642ACE} = {3AD10A9F-D5EF-423A-8A76-D735B0DBE68A}
 	EndGlobalSection
 EndGlobal

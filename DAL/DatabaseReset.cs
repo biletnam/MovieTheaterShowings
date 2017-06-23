@@ -10,10 +10,21 @@ using System.Configuration;
 
 namespace DAL
 {
-    public static class DatabaseReset
+    public class DatabaseReset
     {
-        public static string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["testDB_MovieTheaterShowings_connection"].ConnectionString;
-        public static void resetDatabase() 
+        public string ConnectionString { get; set; }
+        public DatabaseReset(string environment = "prod")
+        {
+            if (environment == "prod")
+            {
+                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MovieTheaterShowings_connection"].ConnectionString;
+            }
+            else if (environment == "test")
+            {
+                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["testDB_MovieTheaterShowings_connection"].ConnectionString;
+            }
+        }
+        public void resetDatabase() 
         {
             try
             {

@@ -15,25 +15,29 @@ namespace BLL.Tests
     public class MoviesBLL_Tests
     {
         IMoviesBLL movies_bll { get; set; }
+        DatabaseReset dbReset { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
             //Reset the database after all the tests:
-            DatabaseReset.resetDatabase();
+            dbReset.resetDatabase();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
             //Reset the database after all the tests:
-            DatabaseReset.resetDatabase();
+            dbReset.resetDatabase();
         }
 
         //Constructor:
         public MoviesBLL_Tests()
         {
-            CRoot CompositionRoot = new CRoot("test");
+            string environment = "test";
+            CRoot CompositionRoot = new CRoot(environment);
+            dbReset = new DatabaseReset(environment);
+
             movies_bll = CompositionRoot.MoviesBLL;
         }
 
@@ -324,7 +328,7 @@ namespace BLL.Tests
             IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
             IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
 
-            System.Threading.Thread.Sleep(7000); //Need this because the Search_Movie_by_Name method takes time.
+            //System.Threading.Thread.Sleep(7000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
             List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("future");
@@ -344,7 +348,7 @@ namespace BLL.Tests
             IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
             IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
 
-            System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+            //System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
             List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("blahyadablah");
@@ -365,7 +369,7 @@ namespace BLL.Tests
             IMovieMapper movie5 = movies_bll.InsertMovie(new MovieMapper { Title = "The Matrix", RunTime = 130, Image = "/path/to/image/matrix.png" });
             IMovieMapper movie6 = movies_bll.InsertMovie(new MovieMapper { Title = "Braveheart", RunTime = 130, Image = "/path/to/image/bh.png" });
 
-            System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
+            //System.Threading.Thread.Sleep(5000); //Need this because the Search_Movie_by_Name method takes time.
 
             //Get the showtimes back out of the database:
             List<IMovieMapper> found_movies = movies_bll.Search_Movie_by_Name_Like("");

@@ -22,7 +22,7 @@ namespace MVC.Controllers
         //Constructor:
         public AuthenticationController()
         {
-            CRoot CompositionRoot = new CRoot("test");
+            CRoot CompositionRoot = new CRoot("prod");
             users_bll = CompositionRoot.UsersBLL;
         }
 
