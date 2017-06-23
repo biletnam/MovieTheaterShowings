@@ -1,0 +1,25 @@
+﻿@model MVC.Models.AdminViewModels.AddMovieViewModel
+@{
+    ViewBag.Title = "AddMovie";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
+    using (Html.BeginForm("AddMovie", "Admin", FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.Title);
+        @Html.TextBoxFor(m => m.Title);
+
+        @Html.LabelFor(m => m.RunTime);
+        @Html.PasswordFor(m => m.RunTime);
+
+        @Html.LabelFor(m => m.Image);
+        @Html.PasswordFor(m => m.Image);
+
+        <input type="submit" value="Add Movie" />
+
+        @Html.DisplayTextFor(m => m.errorMessage);
+    }
+}
+
