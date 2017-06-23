@@ -31,6 +31,10 @@
                         {
                             <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                             <li>@Html.ActionLink("Logout", "Logout", "Authentication")</li>
+                            if (Session["RoleName"].ToString() == "admin")
+                            {
+                                <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                            }
                         }
                         <li><a href="">Test List Item</a></li>
                         <li><a href="">Test List Item</a></li>

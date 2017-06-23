@@ -18,6 +18,7 @@ namespace MVC
         protected void Session_Start(object sender, EventArgs e) 
         {
             Session["Authenticated"] = false;
+            Session["RoleName"] = "user";
         }
 
     }

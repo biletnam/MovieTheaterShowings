@@ -125,6 +125,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Authentication\Signup.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Shared\partial_views\_ViewMovies.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
