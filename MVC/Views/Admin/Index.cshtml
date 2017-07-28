@@ -1,4 +1,4 @@
-﻿
+﻿@model MVC.Models.AdminViewModels.AddMovieViewModel
 @{
     ViewBag.Title = "Admin Panel";
 }
@@ -15,3 +15,5 @@
 @{
     Html.RenderPartial("~/Views/Shared/partial_views/_ViewMovies.cshtml");
 }
+
+@Html.DisplayTextFor(m => m.errorMessage);
