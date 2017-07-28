@@ -6,6 +6,7 @@ using CompositionRoot;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using SharedResources.Exceptions.DAL;
+using System.Collections.Generic;
 
 namespace DAL.Tests
 {
@@ -98,5 +99,24 @@ namespace DAL.Tests
             IUserMapper user = users_dal.Insert(new UserMapper { Name = "trump", RoleName = "user", password_hash = "thebestpassword" });
             IUserMapper user2 = users_dal.Insert(new UserMapper { Name = "trump", RoleName = "user", password_hash = "thebestpassword2" });
         }
+
+        [TestMethod]
+        public void Get_All_Users()
+        {
+            //Create some movies:
+            IUserMapper user1 = users_dal.Insert(new UserMapper { Name = "Jon Snow", RoleName = "user", password_hash = "thebestpassword" });
+            IUserMapper user2 = users_dal.Insert(new UserMapper { Name = "Trump", RoleName = "user", password_hash = "thebestpassword" });
+            IUserMapper user3 = users_dal.Insert(new UserMapper { Name = "Hillary", RoleName = "user", password_hash = "benghazi" });
+
+            //Get all the movies out of the database:
+            List<IUserMapper> all_users = users_dal.Get_All_Users();
+
+            Assert.IsTrue(all_users.Count == 4);
+        }
+
+
+
+
+
     }
 }

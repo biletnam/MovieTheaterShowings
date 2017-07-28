@@ -6,7 +6,8 @@ using CompositionRoot;
 using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using SharedResources.Exceptions.BLL;
-using DAL; //Need this to get to the DatabaseReset class so we can reset database before/after each test.
+using DAL;
+using System.Collections.Generic; //Need this to get to the DatabaseReset class so we can reset database before/after each test.
 
 namespace BLL.Tests
 {
@@ -146,6 +147,25 @@ namespace BLL.Tests
             //Authenticate user:
             bool authentic = users_bll.authenticate_user(new UserMapper { Name = "trump", password_hash = "" });
         }
+
+        [TestMethod]
+        public void Get_All_Users()
+        {
+            IUserMapper user1 = users_bll.Insert(new UserMapper { Name = "Trump", RoleName = "user", password_hash = "thebestpassword" });
+            IUserMapper user2 = users_bll.Insert(new UserMapper { Name = "Melania", RoleName = "user", password_hash = "michelleObama" });
+            IUserMapper user3 = users_bll.Insert(new UserMapper { Name = "Ivanka", RoleName = "user", password_hash = "chineseproducts" });
+            List<IUserMapper> found_movies = users_bll.Get_All_Users();
+            Assert.AreEqual(found_movies.Count, 4);
+        }
+
+        [TestMethod]
+        public void Get_All_Users_only_admin_exists()
+        {
+            List<IUserMapper> found_users = users_bll.Get_All_Users();
+            Assert.AreEqual(found_users.Count, 1);
+        }
+
+
 
     }
 }

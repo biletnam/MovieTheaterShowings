@@ -140,6 +140,45 @@ namespace DAL
             return output;
         }
 
+        public List<IUserMapper> Get_All_Users()
+        {
+            List<IUserMapper> output = new List<IUserMapper>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("select_all_users", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Prepare();
+                        SqlDataReader users = command.ExecuteReader();
+
+                        while (users.Read())
+                        {
+                            //Return the user that was created:
+                            IUserMapper user = new UserMapper();
+                            user.Id = (int)users["Id"];
+                            user.Name = (String)users["Name"];
+                            user.password_hash = (String)users["password_hash"];
+                            user.RoleId = (int)users["RoleId"];
+                            user.RoleName = (String)users["RoleName"];
+                            output.Add(user);
+                        }
+
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new SqlDALException("There was a problem with SQL.", e);
+            }
+            return output;
+        }
+
+
+
 
     }
 }

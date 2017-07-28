@@ -115,5 +115,22 @@ namespace BLL
             return output;
         }
 
+        public List<IUserMapper> Get_All_Users()
+        {
+            List<IUserMapper> output = new List<IUserMapper>();
+            try
+            {
+                //Insert the users:
+                output = usersDAL.Get_All_Users();
+            }
+            catch (SqlDALException e)
+            {
+                throw new SqlBLLException("An error occurred with SQL.", e);
+            }
+            return output;
+        }
+
+
+
     }
 }
