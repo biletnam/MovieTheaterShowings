@@ -11,6 +11,7 @@ using SharedResources.Interfaces;
 using SharedResources.Mappers;
 using CompositionRoot;
 using SharedResources.Exceptions.BLL;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -27,13 +28,13 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("users/")]
-        public HttpResponseMessage Get()
+        public async Task<HttpResponseMessage> Get()
         {
             HttpResponseMessage output;
             List<IUserMapper> data = new List<IUserMapper>();
             try
             {
-                data = users_bll.Get_All_Users();
+                data = await Task.Run(() => users_bll.Get_All_Users());
                 ResponseWrapper wrapper = new ResponseWrapper(data);
                 output = Request.CreateResponse(HttpStatusCode.OK, wrapper);
             }
@@ -46,7 +47,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("users/{id}")]
-        public HttpResponseMessage Get(int id)
+        public async Task<HttpResponseMessage> Get(int id)
         {
             HttpResponseMessage output;
             IUserMapper data;
@@ -55,7 +56,7 @@ namespace API.Controllers
                 //Create an IUserMapper
                 IUserMapper user = new UserMapper();
                 user.Id = id;
-                data = users_bll.Get_User_by_Id(user);
+                data = await Task.Run(() => users_bll.Get_User_by_Id(user));
                 ResponseWrapper wrapper = new ResponseWrapper(data);
                 output = Request.CreateResponse(HttpStatusCode.OK, wrapper);
             }
@@ -68,7 +69,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("users/{id}/{field}")]
-        public HttpResponseMessage Get(int id, string field)
+        public async Task<HttpResponseMessage> Get(int id, string field)
         {
             HttpResponseMessage output;
             IUserMapper data;
@@ -77,7 +78,7 @@ namespace API.Controllers
                 //Create an IUserMapper
                 IUserMapper user = new UserMapper();
                 user.Id = id;
-                data = users_bll.Get_User_by_Id(user);
+                data = await Task.Run(() => users_bll.Get_User_by_Id(user));
                 var outputField = new Object();
                 switch(field.ToLower()){
                     case "id": outputField = data.Id; break;
