@@ -130,7 +130,33 @@ namespace BLL
             return output;
         }
 
+        public IUserMapper Get_User_by_Id(IUserMapper user)
+        {
 
+            IUserMapper output = null;
+            //Check for null or empty values:
+            var testVars = new Object[]{
+                user.Id
+            };
+
+            if (!DataValidator.is_null_empty_or_zero(testVars))
+            {
+                try
+                {
+                    output = usersDAL.Get_User_by_Id(user);
+                }
+                catch (SqlDALException e)
+                {
+                    throw new SqlBLLException("One or more SQL constraints may have caused this issue.  Please provide the Name field.  The Name must exist in the database.", e);
+                }
+            }
+            else
+            {
+                throw new MissingDataBLLException("Cannot complete this operation because required data is missing.  Please be sure to provide the Name field.");
+            }
+
+            return output;
+        }
 
     }
 }

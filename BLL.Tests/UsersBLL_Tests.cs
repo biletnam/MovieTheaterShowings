@@ -165,7 +165,13 @@ namespace BLL.Tests
             Assert.AreEqual(found_users.Count, 1);
         }
 
-
+        [TestMethod]
+        public void Get_User_by_Id()
+        {
+            //Get the user back out:
+            IUserMapper foundUser = users_bll.Get_User_by_Id(new UserMapper { Id = 1 });
+            Assert.IsNotNull(foundUser);
+        }
 
     }
 }

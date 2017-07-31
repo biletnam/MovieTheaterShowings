@@ -114,8 +114,19 @@ namespace DAL.Tests
             Assert.IsTrue(all_users.Count == 4);
         }
 
+        [TestMethod]
+        public void Get_User_by_Id()
+        {
+            IUserMapper user1 = users_dal.Get_User_by_Id(new UserMapper{ Id = 1, RoleName = "", password_hash = "" });
+            Assert.IsTrue(user1.Name == "admin");
+        }
 
-
+        [TestMethod]
+        public void Get_User_by_Id_bad_Id()
+        {
+            IUserMapper user1 = users_dal.Get_User_by_Id(new UserMapper { Id = 666, RoleName = "", password_hash = "" });
+            Assert.IsNull(user1);
+        }
 
 
     }

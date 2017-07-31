@@ -178,7 +178,46 @@ namespace DAL
         }
 
 
+        //Get User by User.Name
+        public IUserMapper Get_User_by_Id(IUserMapper user)
+        {
+            IUserMapper output = null;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("select_user_by_id", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
 
+                        //Add input parameters:
+                        command.Parameters.Add("@UserId", SqlDbType.Int).Value = user.Id;
+
+                        command.Prepare();
+                        SqlDataReader found_user = command.ExecuteReader();
+
+                        if(found_user.Read())
+                        {
+                            //Return the user that was created:
+                            output = new UserMapper();
+                            output.Id = (int)found_user["Id"];
+                            output.Name = (string)found_user["Name"];
+                            output.password_hash = (string)found_user["password_hash"];
+                            output.RoleName = (string)found_user["RoleName"];
+                            output.RoleId = (int)found_user["RoleID"];
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new SqlDALException("There was a problem with SQL.  Please provide valid data.  The Name field must be provided, and must exist in the database.", e);
+            }
+
+            //Return the method output:  If zero, that means there was a problem.
+            return output;
+        }
 
     }
 }
