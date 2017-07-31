@@ -149,19 +149,19 @@ namespace BLL.Tests
         }
 
         [TestMethod]
-        public void Get_All_Users()
+        public async void Get_All_Users()
         {
             IUserMapper user1 = users_bll.Insert(new UserMapper { Name = "Trump", RoleName = "user", password_hash = "thebestpassword" });
             IUserMapper user2 = users_bll.Insert(new UserMapper { Name = "Melania", RoleName = "user", password_hash = "michelleObama" });
             IUserMapper user3 = users_bll.Insert(new UserMapper { Name = "Ivanka", RoleName = "user", password_hash = "chineseproducts" });
-            List<IUserMapper> found_movies = users_bll.Get_All_Users();
+            List<IUserMapper> found_movies = await users_bll.Get_All_Users();
             Assert.AreEqual(found_movies.Count, 4);
         }
 
         [TestMethod]
-        public void Get_All_Users_only_admin_exists()
+        public async void Get_All_Users_only_admin_exists()
         {
-            List<IUserMapper> found_users = users_bll.Get_All_Users();
+            List<IUserMapper> found_users = await users_bll.Get_All_Users();
             Assert.AreEqual(found_users.Count, 1);
         }
 

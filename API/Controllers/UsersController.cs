@@ -34,7 +34,7 @@ namespace API.Controllers
             List<IUserMapper> data = new List<IUserMapper>();
             try
             {
-                data = await Task.Run(() => users_bll.Get_All_Users());
+                data = await users_bll.Get_All_Users();
                 ResponseWrapper wrapper = new ResponseWrapper(data);
                 output = Request.CreateResponse(HttpStatusCode.OK, wrapper);
             }
