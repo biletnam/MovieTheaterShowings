@@ -140,7 +140,7 @@ namespace DAL
             return output;
         }
 
-        public List<IUserMapper> Get_All_Users()
+        public async Task<List<IUserMapper>> Get_All_Users()
         {
             List<IUserMapper> output = new List<IUserMapper>();
             try
@@ -153,7 +153,7 @@ namespace DAL
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Prepare();
-                        SqlDataReader users = command.ExecuteReader();
+                        SqlDataReader users = await Task.Run(() => command.ExecuteReader());
 
                         while (users.Read())
                         {

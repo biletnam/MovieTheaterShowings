@@ -121,7 +121,7 @@ namespace BLL
             try
             {
                 //Insert the users:
-                output = await Task.Run(() => usersDAL.Get_All_Users());
+                output = await usersDAL.Get_All_Users();
             }
             catch (SqlDALException e)
             {

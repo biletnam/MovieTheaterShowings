@@ -101,7 +101,7 @@ namespace DAL.Tests
         }
 
         [TestMethod]
-        public void Get_All_Users()
+        public async void Get_All_Users()
         {
             //Create some movies:
             IUserMapper user1 = users_dal.Insert(new UserMapper { Name = "Jon Snow", RoleName = "user", password_hash = "thebestpassword" });
@@ -109,7 +109,7 @@ namespace DAL.Tests
             IUserMapper user3 = users_dal.Insert(new UserMapper { Name = "Hillary", RoleName = "user", password_hash = "benghazi" });
 
             //Get all the movies out of the database:
-            List<IUserMapper> all_users = users_dal.Get_All_Users();
+            List<IUserMapper> all_users = await users_dal.Get_All_Users();
 
             Assert.IsTrue(all_users.Count == 4);
         }
